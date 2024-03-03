@@ -2,9 +2,12 @@ let computerScore = 0;
 let playerScore = 0;
 
 function getComputerChoice () {
+// Select a move (Rock, Paper or Scissors) randomly from the computer
+
     // Return a random int between 0 and 2
     let randInt = Math.floor(Math.random() * (2 - 0 + 1) + 0);
 
+    // Assign random number to a move
     switch (randInt) {
         case 1:
             return "paper";
@@ -21,10 +24,14 @@ function getComputerChoice () {
 }
 
 function getPlayerChoice () {
+// Ask the player to select a move
+
     let playerChoice = prompt("Select Rock, Paper or Scissors:");
     
+    // Change the input to lower case so it can be compared against computerChoice
     playerChoice = playerChoice.toLowerCase();
 
+    // Check for incorrect input
     if (playerChoice != "rock" && 
         playerChoice != "paper" &&
         playerChoice != "scissors") {
@@ -36,6 +43,8 @@ function getPlayerChoice () {
 }
 
 function playRound(computerSelection, playerSelection) {
+// Play a round by comparing the move of the player and the computer, and return the results
+
     if (computerSelection == playerSelection) {
        return "It's a tie";
     }
@@ -66,22 +75,27 @@ function playRound(computerSelection, playerSelection) {
 }
 
 function playGame() {
+// Play five rounds in a row and return the winner based on the score
+
     for (let i = 0; i < 5; i++) {
+        // Assign two variables to store computerChoice and playerChoice
         const computerSelection = getComputerChoice();
-        //console.log(computerSelection);
         const playerSelection = getPlayerChoice(); 
 
+        // Store the results of the round in a variable
         let results = playRound(computerSelection, playerSelection);
         
+        // Display the results of the current round
         console.log(results);
-        keepScore(results);
 
-        //console.log("Player = " + playerScore);
-        //console.log("Computer = " + computerScore);
+        // Modify the score of each player
+        keepScore(results);
     }
 }
 
 function keepScore(results) {
+// Keep track of the score of each player to select a winner at the nend of the five rounds
+
     if (results.startsWith("Win", 4)) {
         playerScore++;
     }
@@ -94,6 +108,8 @@ function keepScore(results) {
 }
 
 function displayResults() {
+// Display the final score and the winner of the game based on who has the highest score
+
     if (computerScore > playerScore) {
         return "Computer Wins! " + computerScore + "/" + playerScore;
     }
