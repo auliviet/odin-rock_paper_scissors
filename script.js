@@ -1,6 +1,5 @@
-const ROCK = 0;
-const PAPER = 1;
-const SCISSORS = 2;
+let computerScore = 0;
+let playerScore = 0;
 
 function getComputerChoice () {
     // Return a random int between 0 and 2
@@ -8,15 +7,15 @@ function getComputerChoice () {
 
     switch (randInt) {
         case 1:
-            return PAPER;
+            return "paper";
             break;
         
         case 2:
-            return SCISSORS; 
+            return "scissors"; 
             break;
     
         default:
-            return ROCK;
+            return "rock";
             break;
     }
 }
@@ -31,29 +30,80 @@ function getPlayerChoice () {
         playerChoice != "scissors") {
             getPlayerChoice();
         }
-    
-    if (playerChoice == "rock") {
-        return ROCK;
+    else {
+        return playerChoice;
     }
-    else if (playerChoice == "paper") {
-        return PAPER;
+}
+
+function playRound(computerSelection, playerSelection) {
+    if (computerSelection == playerSelection) {
+       return "It's a tie";
+    }
+    else if (computerSelection == "rock") {
+        if (playerSelection == "paper") {
+            return "You Win! Paper beats Rock";
+        }
+        else {
+            return "You Lose! Rock beats Scissors";
+        }
+    }
+    else if (computerSelection == "paper") {
+        if (playerSelection == "scissors") {
+            return "You Win! Scissors beats Paper";
+        }
+        else {
+            return "You Lose! Paper beats Rock";
+        }
     }
     else {
-        return SCISSORS;
+        if (playerSelection == "rock") {
+            return "You Win! Rock beats Scissors";
+        }
+        else {
+            return "You Lose! Scissors beats Paper";
+        }
     }
 }
 
-function playRound(playerSelection, computerSelection) {
-    if (playerSelection == computerSelection) {
-        return "tie";
-    }    
-    
-    else if (playerSelection)
+function playGame() {
+    for (let i = 0; i < 5; i++) {
+        const computerSelection = getComputerChoice();
+        //console.log(computerSelection);
+        const playerSelection = getPlayerChoice(); 
+
+        let results = playRound(computerSelection, playerSelection);
+        
+        console.log(results);
+        keepScore(results);
+
+        //console.log("Player = " + playerScore);
+        //console.log("Computer = " + computerScore);
+    }
 }
 
-const computerSelection = getComputerChoice(); 
-const playerSelection = getPlayerChoice();
+function keepScore(results) {
+    if (results.startsWith("Win", 4)) {
+        playerScore++;
+    }
+    else if (results.startsWith("Lose", 4)){
+        computerScore++;
+    }
+    else {
+        return;
+    }
+}
 
-console.log(playRound(playerSelection, computerSelection));
+function displayResults() {
+    if (computerScore > playerScore) {
+        return "Computer Wins! " + computerScore + "/" + playerScore;
+    }
+    else if (playerScore > computerScore) {
+        return "You Win! " + playerScore + "/" + computerScore; 
+    }
+    else {
+        return "It's  a tie! " + playerScore + "/" + computerScore;
+    }
+}
 
-
+playGame();
+console.log(displayResults());
