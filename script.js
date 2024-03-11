@@ -7,38 +7,26 @@ function getComputerChoice () {
     // Return a random int between 0 and 2
     let randInt = Math.floor(Math.random() * (2 - 0 + 1) + 0);
 
-    // Assign random number to a move
+    // Access the computer choice in the UI
+    let computerChoice = document.getElementById("computer-choice-icon");
+
+    // Assign random number to a move and display in the UI
     switch (randInt) {
         case 1:
+            computerChoice.textContent = "📄";
             return "paper";
             break;
         
         case 2:
+            computerChoice.textContent = "✂️";
             return "scissors"; 
             break;
     
         default:
+            computerChoice.textContent = "🪨";
             return "rock";
             break;
     }
-/*
-    // Display computer choice in the UI
-    let computerChoice = document.getElementById("computer-choice");
-    switch (computerSelection) {
-        case "paper":
-            computerChoice.textContent = "📄";
-            break;
-        
-        case "rock":
-            computerChoice.textContent = "🪨";
-            break; 
-
-        default: 
-            computerChoice.textContent = "✂️";
-            break;
-    }
-*/
-
 }
 
 function playRound(computerSelection, playerSelection) {
@@ -73,6 +61,13 @@ function playRound(computerSelection, playerSelection) {
     }
 }
 
+function playGame(playerChoice) {
+    const computerChoice = getComputerChoice();
+
+    let results = playRound(computerChoice, playerChoice);
+    let resultsDisplay = document.querySelector("#results h3");
+    resultsDisplay.textContent = results;
+}
 
 /*
 function playGame() {
@@ -130,25 +125,16 @@ const scissors = document.getElementById("scissors");
 
 // Event listeners
 rock.addEventListener("click", (event) => {
-    // Assign two variables to store computerChoice and playerChoice
-    const computerSelection = getComputerChoice();
-    const playerSelection = rock;
-    
-    console.log(playerSelection);
+    const playerSelection = "rock";
+    playGame(playerSelection);
 });
 
 paper.addEventListener("click", (event) => {
-    // Assign two variables to store computerChoice and playerChoice
-    const computerSelection = getComputerChoice();
-    const playerSelection = paper;
-    
-    console.log(playerSelection);
+    const playerSelection = "paper";
+    playGame(playerSelection);
 });
 
 scissors.addEventListener("click", (event) => {
-    // Assign two variables to store computerChoice and playerChoice
-    const computerSelection = getComputerChoice();
-    const playerSelection = scissors;
-    
-    console.log(playerSelection);
+    const playerSelection = "scissors";
+    playGame(playerSelection);
 });
