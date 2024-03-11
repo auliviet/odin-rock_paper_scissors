@@ -29,8 +29,9 @@ function getComputerChoice () {
     }
 }
 
+
 function playRound(computerSelection, playerSelection) {
-// Play a round by comparing the move of the player and the computer, and return the results
+// Return the winner of a specific round by comparing the move of the player and the computer.
 
     if (computerSelection == playerSelection) {
        return "It's a tie";
@@ -61,37 +62,25 @@ function playRound(computerSelection, playerSelection) {
     }
 }
 
+
 function playGame(playerChoice) {
+// Initiate a round of Rock Paper Scissors when the user clicks on an incon and display the winner. 
+
+    // Get computer choice randomly
     const computerChoice = getComputerChoice();
 
+    // Play a round and display results 
     let results = playRound(computerChoice, playerChoice);
     let resultsDisplay = document.querySelector("#results h3");
     resultsDisplay.textContent = results;
+    
+    // Keep track and display the score
+    updateScore(results);
 }
 
-/*
-function playGame() {
-// Play five rounds in a row and return the winner based on the score
 
-    for (let i = 0; i < 5; i++) {
-        // Assign two variables to store computerChoice and playerChoice
-        const computerSelection = getComputerChoice();
-        const playerSelection = getPlayerChoice(); 
-
-        // Store the results of the round in a variable
-        let results = playRound(computerSelection, playerSelection);
-        
-        // Display the results of the current round
-        console.log(results);
-
-        // Modify the score of each player
-        keepScore(results);
-    }
-}
-*/
-
-function keepScore(results) {
-// Keep track of the score of each player to select a winner at the nend of the five rounds
+function updateScore(results) {
+// Keep track of the score of each player
 
     if (results.startsWith("Win", 4)) {
         playerScore++;
@@ -101,11 +90,23 @@ function keepScore(results) {
     }
     else {
         return;
-    }
+    } 
 }
 
-function displayResults() {
-// Display the final score and the winner of the game based on who has the highest score
+
+function displayScore() {
+// Update scores in the UI
+
+    let playerScoreDisplay = document.getElementById("player-score");
+    let computerScoreDisplay = document.getElementById("computer-score");
+
+    playerScoreDisplay.textContent = playerScore;
+    computerScoreDisplay.textContent = computerScore; 
+}
+
+
+function displayWinner() {
+// Display the winner of the game based on who has the highest score
 
     if (computerScore > playerScore) {
         return "Computer Wins! " + computerScore + "/" + playerScore;
@@ -117,6 +118,7 @@ function displayResults() {
         return "It's  a tie! " + playerScore + "/" + computerScore;
     }
 }
+
 
 // Project variables
 const rock = document.getElementById("rock");
