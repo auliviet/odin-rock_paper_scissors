@@ -74,6 +74,8 @@ function playRound(computerSelection, playerSelection) {
     }
 }
 
+
+/*
 function playGame() {
 // Play five rounds in a row and return the winner based on the score
 
@@ -92,6 +94,7 @@ function playGame() {
         keepScore(results);
     }
 }
+*/
 
 function keepScore(results) {
 // Keep track of the score of each player to select a winner at the nend of the five rounds
