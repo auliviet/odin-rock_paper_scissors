@@ -1,0 +1,58 @@
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  height: 100vh;
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  justify-content: space-evenly;
+}
+
+#player,
+#computer,
+#results {
+  padding: 32px 16px;
+  background-color: #dadada;
+  border-radius: 32px;
+}
+
+#player,
+#computer {
+  flex: 1;
+}
+
+#results {
+  flex-shrink: 0;
+  height: 150px;
+}
+
+h2 {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.choice {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button {
+  width: 100px;
+  height: 100px;
+  border: 5px solid #fff;
+  border-radius: 50px;
+  font-size: 60px;
+  cursor: pointer;
+}
