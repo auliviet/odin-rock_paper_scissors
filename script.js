@@ -7,24 +7,39 @@ function getComputerChoice () {
     // Return a random int between 0 and 2
     let randInt = Math.floor(Math.random() * (2 - 0 + 1) + 0);
 
-    // Access the computer choice in the UI
-    let computerChoice = document.getElementById("computer-choice-icon");
-
     // Assign random number to a move and display in the UI
     switch (randInt) {
         case 1:
-            computerChoice.textContent = "📄";
             return "paper";
             break;
         
         case 2:
-            computerChoice.textContent = "✂️";
             return "scissors"; 
             break;
     
         default:
-            computerChoice.textContent = "🪨";
             return "rock";
+            break;
+    }
+}
+
+
+function displayComputerChoice(computerChoice) {
+// Display the computer choice in the UI
+
+let computerChoiceIcon = document.getElementById("computer-choice-icon");
+
+    switch (computerChoice) {
+        case "paper":
+            computerChoiceIcon.textContent = "📄";
+            break;
+        
+        case "scissors":
+            computerChoiceIcon.textContent = "✂️";
+            break;
+    
+        default:
+            computerChoiceIcon.textContent = "🪨";
             break;
     }
 }
@@ -68,6 +83,7 @@ function playGame(playerChoice) {
 
     // Get computer choice randomly
     const computerChoice = getComputerChoice();
+    displayComputerChoice(computerChoice);
 
     // Play a round and display results 
     let results = playRound(computerChoice, playerChoice);
@@ -76,6 +92,7 @@ function playGame(playerChoice) {
     
     // Keep track and display the score
     updateScore(results);
+    displayScore();
 }
 
 
