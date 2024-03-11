@@ -21,25 +21,24 @@ function getComputerChoice () {
             return "rock";
             break;
     }
-}
+/*
+    // Display computer choice in the UI
+    let computerChoice = document.getElementById("computer-choice");
+    switch (computerSelection) {
+        case "paper":
+            computerChoice.textContent = "📄";
+            break;
+        
+        case "rock":
+            computerChoice.textContent = "🪨";
+            break; 
 
-function getPlayerChoice () {
-// Ask the player to select a move
-
-    let playerChoice = prompt("Select Rock, Paper or Scissors:");
-    
-    // Change the input to lower case so it can be compared against computerChoice
-    playerChoice = playerChoice.toLowerCase();
-
-    // Check for incorrect input
-    if (playerChoice != "rock" && 
-        playerChoice != "paper" &&
-        playerChoice != "scissors") {
-            getPlayerChoice();
-        }
-    else {
-        return playerChoice;
+        default: 
+            computerChoice.textContent = "✂️";
+            break;
     }
+*/
+
 }
 
 function playRound(computerSelection, playerSelection) {
@@ -124,5 +123,32 @@ function displayResults() {
     }
 }
 
-playGame();
-console.log(displayResults());
+// Project variables
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+
+// Event listeners
+rock.addEventListener("click", (event) => {
+    // Assign two variables to store computerChoice and playerChoice
+    const computerSelection = getComputerChoice();
+    const playerSelection = rock;
+    
+    console.log(playerSelection);
+});
+
+paper.addEventListener("click", (event) => {
+    // Assign two variables to store computerChoice and playerChoice
+    const computerSelection = getComputerChoice();
+    const playerSelection = paper;
+    
+    console.log(playerSelection);
+});
+
+scissors.addEventListener("click", (event) => {
+    // Assign two variables to store computerChoice and playerChoice
+    const computerSelection = getComputerChoice();
+    const playerSelection = scissors;
+    
+    console.log(playerSelection);
+});
