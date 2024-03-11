@@ -5,7 +5,7 @@
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="style.css">
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </head>
 
   <body>
@@ -14,7 +14,7 @@
         <section id="player">
           <h2>😵‍💫 Your choice</h2>
 
-          <div>
+          <div class="choice">
             <button id="rock">🪨</button>
             <button id="paper">📄</button>
             <button id="scissors">✂️</button>
@@ -23,7 +23,10 @@
 
         <section id="computer">
           <h2>🤖 Computer choice</h2>
-          <button id="computer-choice"></button>
+
+          <div class="choice">
+            <button id="computer-choice-icon"></button>
+          </div>
         </section>
       </div>
     
