@@ -93,6 +93,10 @@ function playGame(playerChoice) {
     // Keep track and display the score
     updateScore(results);
     displayScore();
+
+    if (computerScore == 5 || playerScore == 5) {
+        displayWinner();
+    }
 }
 
 
@@ -125,15 +129,47 @@ function displayScore() {
 function displayWinner() {
 // Display the winner of the game based on who has the highest score
 
-    if (computerScore > playerScore) {
-        return "Computer Wins! " + computerScore + "/" + playerScore;
-    }
-    else if (playerScore > computerScore) {
-        return "You Win! " + playerScore + "/" + computerScore; 
+    let sectionToDisplay = document.getElementById("endgame");
+    let sectionToHide = document.getElementById("results");
+    let winnerDisplay = document.querySelector("#endgame h2");
+
+    // Disable click on buttons
+    rock.setAttribute("disabled", "");
+    paper.setAttribute("disabled", "");
+    scissors.setAttribute("disabled", "");
+
+    // Hide section with the scores and replace it with the section with the winner
+    sectionToHide.style.display = "none";
+    sectionToDisplay.style.display = "flex";
+    
+    if (computerScore === 5) {
+        winnerDisplay.textContent = "Computer Wins! " + computerScore + "/" + playerScore;
     }
     else {
-        return "It's  a tie! " + playerScore + "/" + computerScore;
+        winnerDisplay.textContent = "You Win! " + playerScore + "/" + computerScore; 
     }
+}
+
+function resetGame() {
+// Reset scores and start a new game
+    playerScore = 0;
+    computerScore = 0;
+
+    // Refresh scores, if this is ommited, the page will keep displaying old scores. 
+    displayScore();
+    document.querySelector("#results h3").textContent = "";
+
+    // Enable click on buttons
+    rock.removeAttribute("disabled", "");
+    paper.removeAttribute("disabled", "");
+    scissors.removeAttribute("disabled", "");
+
+    // Hide section with the winner and replace it with the section with the scores
+    let sectionToDisplay = document.getElementById("results");
+    let sectionToHide = document.getElementById("endgame");
+
+    sectionToHide.style.display = "none";
+    sectionToDisplay.style.display = "block";
 }
 
 
@@ -141,6 +177,7 @@ function displayWinner() {
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
+const playAgain = document.getElementById("play-again");
 
 // Event listeners
 rock.addEventListener("click", (event) => {
@@ -157,3 +194,5 @@ scissors.addEventListener("click", (event) => {
     const playerSelection = "scissors";
     playGame(playerSelection);
 });
+
+playAgain.addEventListener("click", resetGame);
