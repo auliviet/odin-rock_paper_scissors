@@ -33,13 +33,12 @@ html {
   flex: 1;
 }
 
-#results {
-  flex-shrink: 0;
-  height: 150px;
+h2,
+h3 {
+  text-align: center;
 }
 
 h2 {
-  text-align: center;
   text-transform: uppercase;
 }
 
@@ -55,4 +54,13 @@ button {
   border-radius: 50px;
   font-size: 60px;
   cursor: pointer;
+}
+
+#results {
+  flex-shrink: 0;
+  height: 250px;
+}
+
+#results h3 {
+  height: 32px;
 }
